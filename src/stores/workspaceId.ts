@@ -16,10 +16,10 @@ export interface IWorkspaceId {
 function autoSave(store: any, save: any) {
   let firstRun = true;
   autorun(() => {
-    const connectionsStore = toJS(store);
-    delete connectionsStore.rootStore;
+    const workspaceStore = toJS(store);
+    delete workspaceStore.rootStore;
     if (!firstRun) {
-      save(connectionsStore.workspaceId);
+      save(workspaceStore.workspaceId);
     }
     firstRun = false;
   });
