@@ -1,6 +1,6 @@
+# Info
 
-  <h2 align="center">⚠️ DEPRECATED</h2>
-  <p align="center">This repository is not maintained anymore. Read <a href="https://github.com/rudderlabs/config-generator/issues/49">this issue for more details</a></p>
+This`s unofficial fork of [RudderStack](https://rudderstack.com/)  config generator. The main goal of fork is keep compitables withs current version of RudderStack server](https://github.com/rudderlabs/rudder-server).
 
 # What is RudderStack?
 
