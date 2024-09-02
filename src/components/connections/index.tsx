@@ -6,6 +6,7 @@ import { IDestinationsListStore } from '@stores/destinationsList';
 import { ISourceDefinitionsListStore } from '@stores/sourceDefinitionsList';
 import { ISourcesListStore } from '@stores/sourcesList';
 import { IConnectionsStore } from '@stores/connections';
+import { IWorkspaceId } from '@stores/workspaceId';
 import { inject, observer } from 'mobx-react';
 import React, { Component } from 'react';
 
@@ -32,6 +33,7 @@ interface IConnectionsProps {
   sourceDefinitionsListStore: ISourceDefinitionsListStore;
   destinationDefsListStore: IDestinationDefsListStore;
   connectionsStore: IConnectionsStore;
+  workspaceStore: IWorkspaceId;
 }
 
 @inject(
@@ -40,6 +42,7 @@ interface IConnectionsProps {
   'sourceDefinitionsListStore',
   'destinationDefsListStore',
   'connectionsStore',
+  'workspaceStore',
 )
 @observer
 class Connections extends Component<IConnectionsProps, any> {
@@ -90,6 +93,7 @@ class Connections extends Component<IConnectionsProps, any> {
 
   buildWorkspaceConfig = () => {
     const workspaceConfig = {
+      workspaceId: this.props.workspaceStore.workspaceId,
       sources: [] as any,
       metadata: {
         sourceListStore: this.props.sourcesListStore.returnWithoutRootStore(),
@@ -106,6 +110,7 @@ class Connections extends Component<IConnectionsProps, any> {
         name: source.name,
         writeKey: source.writeKey,
         enabled: source.enabled,
+        workspaceId: this.props.workspaceStore.workspaceId,
         sourceDefinitionId: source.sourceDefinitionId,
         deleted: false,
         createdAt: Date(),
@@ -114,6 +119,7 @@ class Connections extends Component<IConnectionsProps, any> {
         destinations: source.destinations.map(dest => {
           return {
             ...dest,
+            workspaceId: this.props.workspaceStore.workspaceId,
             isProcessorEnabled:
               dest.enabled &&
               source.enabled &&
@@ -163,6 +169,7 @@ class Connections extends Component<IConnectionsProps, any> {
       content.metadata.connectionsStore.connections,
     );
     this.props.connectionsStore!.setConnections(content.sources);
+    this.props.workspaceStore!.loadImportedFile(content.workspaceId!);
   };
 
   public render() {

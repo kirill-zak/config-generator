@@ -14,6 +14,7 @@ import {
 } from './destinationDefsList';
 import { ISourcesListStore, SourcesListStore } from './sourcesList';
 import { IMessageStore, MessagesStore } from './messages';
+import { IWorkspaceId, WorkspaceId } from './workspaceId';
 
 export interface IRootStore {
   sourcesListStore: ISourcesListStore;
@@ -22,6 +23,7 @@ export interface IRootStore {
   destinationDefsListStore: IDestinationDefsListStore;
   connectionsStore: IConnectionsStore;
   messagesStore: IMessageStore;
+  workspaceStore: IWorkspaceId;
 }
 
 export class RootStore implements IRootStore {
@@ -31,6 +33,7 @@ export class RootStore implements IRootStore {
   public destinationDefsListStore: IDestinationDefsListStore;
   public connectionsStore: IConnectionsStore;
   public messagesStore: IMessageStore;
+  public workspaceStore: IWorkspaceId;
 
   constructor() {
     this.sourcesListStore = new SourcesListStore(this);
@@ -39,6 +42,7 @@ export class RootStore implements IRootStore {
     this.destinationDefsListStore = new DestinationDefsListStore(this);
     this.connectionsStore = new ConnectionsStore(this);
     this.messagesStore = new MessagesStore();
+    this.workspaceStore = new WorkspaceId(this);
   }
 }
 
