@@ -77,7 +77,7 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTRY_IMAGE }}:${{ github.ref_name }}
-            ghcr.io/rudderstack-config-generator:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}:${{ github.ref_name }}
       
       - name: Export digest
         run: |
@@ -138,7 +138,7 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTRY_IMAGE }}:latest
-            ghcr.io/rudderstack-config-generator:latest
+            ghcr.io/${{ github.repository }}:latest
 
       - name: Export digest
         run: |
