@@ -39,4 +39,4 @@ jobs:
           push: false
           tags: |
             kirillzak/rudderstack-config-generator:latest
-            ghcr.io/rudderstack-config-generator:latest
+            ghcr.io/${{ github.repository }}:latest
